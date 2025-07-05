@@ -96,20 +96,20 @@ public final class PanelArbol extends javax.swing.JPanel {
         puntero.setForeground(new java.awt.Color(255, 255, 255));
         puntero.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         puntero.setText("NULL");
-        bgPuntero.add(puntero, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 20, 20));
+        bgPuntero.add(puntero, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 0, 20, 20));
 
-        bgNodo.add(bgPuntero, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 40, 20));
+        bgNodo.add(bgPuntero, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 30, 20));
 
         bgInfo.setBackground(new java.awt.Color(20, 184, 166));
         bgInfo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        valorInfo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        valorInfo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         valorInfo.setForeground(new java.awt.Color(255, 255, 255));
         valorInfo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         valorInfo.setText("NULL");
-        bgInfo.add(valorInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 80, -1));
+        bgInfo.add(valorInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 70, 30));
 
-        bgNodo.add(bgInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 40));
+        bgNodo.add(bgInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 90, 30));
 
         bgAnterior.setBackground(new java.awt.Color(15, 118, 110));
         bgAnterior.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -120,7 +120,7 @@ public final class PanelArbol extends javax.swing.JPanel {
         ligaAnterior.setText("NULL");
         bgAnterior.add(ligaAnterior, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 0, 20, 20));
 
-        bgNodo.add(bgAnterior, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 30, 20));
+        bgNodo.add(bgAnterior, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 30, 20));
 
         bgSiguiente.setBackground(new java.awt.Color(15, 118, 110));
         bgSiguiente.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -131,7 +131,7 @@ public final class PanelArbol extends javax.swing.JPanel {
         ligaSiguiente.setText("NULL");
         bgSiguiente.add(ligaSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 0, 20, 20));
 
-        bgNodo.add(bgSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 30, 20));
+        bgNodo.add(bgSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 30, 30, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -141,7 +141,7 @@ public final class PanelArbol extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bgNodo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(bgNodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
