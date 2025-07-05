@@ -1,0 +1,35 @@
+# ========================
+# NetBeans Project Ignored Files
+# ========================
+
+# Build outputs
+/build/
+/dist/
+/nbbuild/
+/nbdist/
+
+# Private config
+/nbproject/private/
+/nbproject/private/*
+
+# NetBeans config files that are user/machine specific
+/nbactions.xml
+/nb-configuration.xml
+
+# Compiled class files
+*.class
+
+# Generated JARs
+*.jar
+
+# Logs
+*.log
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.swp
+*.tmp
+*.bak
