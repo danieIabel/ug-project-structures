@@ -88,22 +88,22 @@ public class ArbolBinario {
         return raiz;
     }
 
-    public void contarHojas() {
-        String aviso = "La cantidad de nodos hojas es: " + contarHojasRecursivo(raiz);
+    public void obtenerPeso() {
+        String aviso = "El peso del arbol es: " + pesoRecursivo(raiz);
         Aviso.info(aviso); 
     }
 
-    private int contarHojasRecursivo(NodoArbol nodo) {
+    private int pesoRecursivo(NodoArbol nodo) {
         if (nodo == null) {
             return 0;
         }
         if (nodo.izquierda == null && nodo.derecha == null) {
             return 1;
         }
-        return contarHojasRecursivo(nodo.izquierda) + contarHojasRecursivo(nodo.derecha);
+        return pesoRecursivo(nodo.izquierda) + pesoRecursivo(nodo.derecha);
     }
 
-    public void altura() {
+    public void obtenerAltura() {
         String aviso = "La altura del arbol es: " + alturaRecursiva(raiz);
         Aviso.info(aviso); 
     }

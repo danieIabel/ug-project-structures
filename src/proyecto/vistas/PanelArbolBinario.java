@@ -120,11 +120,8 @@ public class PanelArbolBinario extends javax.swing.JPanel {
         botonEjecutar = new javax.swing.JButton();
         borrarEstructura = new javax.swing.JButton();
         mostrarLista = new javax.swing.JButton();
-        botonContarHojas = new javax.swing.JButton();
         labelAlgoritmos = new javax.swing.JLabel();
         selecionarAlgoritmo = new javax.swing.JComboBox<>();
-        botonObtenerAltura = new javax.swing.JButton();
-        botonContarNodos = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -199,48 +196,18 @@ public class PanelArbolBinario extends javax.swing.JPanel {
         });
         jPanel1.add(mostrarLista, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 0, 40, 40));
 
-        botonContarHojas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        botonContarHojas.setText("Contar hojas");
-        botonContarHojas.setToolTipText("");
-        botonContarHojas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonContarHojasActionPerformed(evt);
-            }
-        });
-        jPanel1.add(botonContarHojas, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 330, 130, 40));
-
         labelAlgoritmos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         labelAlgoritmos.setText("Seleccione el algoritmo deseado");
         jPanel1.add(labelAlgoritmos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, -1, 20));
 
         selecionarAlgoritmo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        selecionarAlgoritmo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Insertar Nodo", "Recorrer PreOrder", "Recorrer InOrder", "Recorrer PostOrder", "Buscar" }));
+        selecionarAlgoritmo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Insertar Nodo", "Recorrer PreOrder", "Recorrer InOrder", "Recorrer PostOrder", "Obtener Altura", "Obtener Peso", "Buscar", "Eliminar" }));
         selecionarAlgoritmo.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 selecionarAlgoritmoItemStateChanged(evt);
             }
         });
         jPanel1.add(selecionarAlgoritmo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 400, 240, 30));
-
-        botonObtenerAltura.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        botonObtenerAltura.setText("Obtener Altura");
-        botonObtenerAltura.setToolTipText("");
-        botonObtenerAltura.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonObtenerAlturaActionPerformed(evt);
-            }
-        });
-        jPanel1.add(botonObtenerAltura, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 390, 280, 40));
-
-        botonContarNodos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        botonContarNodos.setText("Contar nodos");
-        botonContarNodos.setToolTipText("");
-        botonContarNodos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonContarNodosActionPerformed(evt);
-            }
-        });
-        jPanel1.add(botonContarNodos, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 330, 130, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -259,13 +226,16 @@ public class PanelArbolBinario extends javax.swing.JPanel {
         String dato = nuevoValor.getText().trim();
         int numero = Integer.parseInt(dato);
         String opcion = (String) selecionarAlgoritmo.getSelectedItem();
-
+        
         switch (opcion) {
             case "Insertar Nodo" -> arbol.insertar(numero);
             case "Recorrer PreOrder" -> arbol.preOrden();
             case "Recorrer InOrder" -> arbol.inOrden();
             case "Recorrer PostOrder" -> arbol.postOrden();
+            case "Obtener Altura" -> arbol.obtenerAltura();
+            case "Obtener Peso" -> arbol.obtenerPeso();
             case "Buscar" -> arbol.buscar(numero);
+            case "Eliminar" -> arbol.buscar(numero);
         }
 
         renderNodos();
@@ -279,11 +249,6 @@ public class PanelArbolBinario extends javax.swing.JPanel {
         String texto = "El Arbol Binario tiene: " + datos;
         Aviso.warn(texto);
     }//GEN-LAST:event_mostrarListaActionPerformed
-
-    private void botonContarHojasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonContarHojasActionPerformed
-        // TODO add your handling code here:
-        arbol.contarHojas();
-    }//GEN-LAST:event_botonContarHojasActionPerformed
 
     private void selecionarAlgoritmoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_selecionarAlgoritmoItemStateChanged
         // TODO add your handling code here:
@@ -316,16 +281,6 @@ public class PanelArbolBinario extends javax.swing.JPanel {
             evt.consume();
     }//GEN-LAST:event_nuevoValorKeyTyped
 
-    private void botonObtenerAlturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonObtenerAlturaActionPerformed
-        // TODO add your handling code here:
-        arbol.altura();
-    }//GEN-LAST:event_botonObtenerAlturaActionPerformed
-
-    private void botonContarNodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonContarNodosActionPerformed
-        // TODO add your handling code here:
-        arbol.contarNodos();
-    }//GEN-LAST:event_botonContarNodosActionPerformed
-
     private void borrarEstructuraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarEstructuraActionPerformed
         // TODO add your handling code here:
         arbol.borrarArbol();
@@ -334,10 +289,7 @@ public class PanelArbolBinario extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton borrarEstructura;
-    private javax.swing.JButton botonContarHojas;
-    private javax.swing.JButton botonContarNodos;
     private javax.swing.JButton botonEjecutar;
-    private javax.swing.JButton botonObtenerAltura;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel labelAlgoritmos;
     private javax.swing.JLabel labelValor;
