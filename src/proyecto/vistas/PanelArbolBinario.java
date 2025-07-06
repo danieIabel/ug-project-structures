@@ -43,7 +43,6 @@ public class PanelArbolBinario extends javax.swing.JPanel {
         boolean hayHijoIzquierdo = nodo.izquierda != null;
         boolean hayHijoDerecho = nodo.derecha != null;
         boolean ambosHijos = hayHijoIzquierdo && hayHijoDerecho;
-        boolean haySoloUno = (hayHijoIzquierdo || hayHijoDerecho) && !(ambosHijos);
 
         String idActual = nodo.toString();
         String ligaDer = hayHijoDerecho ? nodo.derecha.toString() : "";
@@ -65,7 +64,7 @@ public class PanelArbolBinario extends javax.swing.JPanel {
         hijosPanel.add(crearVistaArbol(nodo.izquierda));
         
         // solo para separar y que no me quede todo junto
-        hijosPanel.add(Box.createHorizontalStrut(haySoloUno ? 64 : 8));
+        hijosPanel.add(Box.createHorizontalStrut(8));
         hijosPanel.add(crearVistaArbol(nodo.derecha));
 
         JPanel contenedor = new JPanel();
@@ -78,7 +77,7 @@ public class PanelArbolBinario extends javax.swing.JPanel {
         contenedor.add(nodoPanel);
         
         if (ambosHijos) {
-            JLabel conector = Label.crear("┌──────┴──────┐");
+            JLabel conector = Label.crear("┌─────┴─────┐");
             contenedor.add(conector);
         } else if (hayHijoIzquierdo) {
             JLabel conector = Label.crear("┌─┘");
@@ -251,23 +250,23 @@ public class PanelArbolBinario extends javax.swing.JPanel {
         Aviso.warn(texto);
     }//GEN-LAST:event_mostrarListaActionPerformed
 
-      private void activarIngresos(boolean activar) {
+    private void activarIngresos(boolean activar) {
         String texto = activar ? "Ingrese un número" : "No disponible";
         labelValor.setText(texto);
         nuevoValor.setEnabled(activar);
-        }
-    
+    }
+
     private void selecionarAlgoritmoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_selecionarAlgoritmoItemStateChanged
         // TODO add your handling code here:
         if (evt.getStateChange() == ItemEvent.SELECTED) {
             String seleccion = (String) selecionarAlgoritmo.getSelectedItem();
 
-            activarIngresos(true);
+            activarIngresos(false);
 
             switch (seleccion) {
-                case "Recorrer PreOrder" -> activarIngresos(false);
-                case "Recorrer InOrder" -> activarIngresos(false);
-                case "Recorrer PostOrder" -> activarIngresos(false);
+                case "Insertar Nodo" -> activarIngresos(true);
+                case "Buscar" -> activarIngresos(true);
+                case "Eliminar" -> activarIngresos(true);
             }
         }
     }//GEN-LAST:event_selecionarAlgoritmoItemStateChanged
