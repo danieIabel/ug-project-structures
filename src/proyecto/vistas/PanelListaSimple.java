@@ -106,11 +106,11 @@ public class PanelListaSimple extends javax.swing.JPanel {
 
         titleSeccion.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         titleSeccion.setText("Algoritmos Simplemente Enlazadas");
-        jPanel1.add(titleSeccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, -1, -1));
+        jPanel1.add(titleSeccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, -1, -1));
 
         labelAlgoritmos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         labelAlgoritmos.setText("Seleccione el algoritmo deseado");
-        jPanel1.add(labelAlgoritmos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, -1, 20));
+        jPanel1.add(labelAlgoritmos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, -1, 20));
 
         selecionarAlgoritmo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         selecionarAlgoritmo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Insertar al final", "Insertar al inicio", "Insertar antes de X", "Insertar despues de X", "Eliminar al final", "Eliminar al inicio", "Elimina X", "Elimina antes de X" }));
@@ -119,23 +119,23 @@ public class PanelListaSimple extends javax.swing.JPanel {
                 selecionarAlgoritmoItemStateChanged(evt);
             }
         });
-        jPanel1.add(selecionarAlgoritmo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 240, 30));
+        jPanel1.add(selecionarAlgoritmo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 240, 30));
 
         labelValor.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         labelValor.setText("Ingrese el valor a insertar");
-        jPanel1.add(labelValor, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, -1, 20));
+        jPanel1.add(labelValor, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, -1, 20));
 
         nuevoValor.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         nuevoValor.setToolTipText("");
-        jPanel1.add(nuevoValor, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, 240, 30));
+        jPanel1.add(nuevoValor, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, 240, 30));
 
         labelReferencia.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         labelReferencia.setText("Ingrese la referencia");
-        jPanel1.add(labelReferencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 300, -1, 20));
+        jPanel1.add(labelReferencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 290, -1, 20));
 
         valorReferencia.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         valorReferencia.setToolTipText("");
-        jPanel1.add(valorReferencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 330, 240, 30));
+        jPanel1.add(valorReferencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 320, 240, 30));
 
         botonEjecutar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         botonEjecutar.setText("Ejecutar algoritmo");
@@ -145,7 +145,7 @@ public class PanelListaSimple extends javax.swing.JPanel {
                 botonEjecutarActionPerformed(evt);
             }
         });
-        jPanel1.add(botonEjecutar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, 240, 40));
+        jPanel1.add(botonEjecutar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 240, 40));
 
         mostrarLista.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         mostrarLista.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icons/file-scan.png"))); // NOI18N

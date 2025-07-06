@@ -26,7 +26,7 @@ import proyecto.utils.*;
  */
 public class PanelArbolBinario extends javax.swing.JPanel {
     private final ArbolBinario arbol = new ArbolBinario();
-    Color bgColor = new Color(238,238,238);
+    Color bgColor = new Color(240,253,250);
 
     /**
      * Creates new form Inicio
@@ -135,21 +135,21 @@ public class PanelArbolBinario extends javax.swing.JPanel {
         visorLista.setAutoscrolls(true);
         visorLista.setFocusable(false);
 
-        visorPanel.setBackground(new java.awt.Color(238, 238, 238));
+        visorPanel.setBackground(new java.awt.Color(240, 253, 250));
         visorPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(14, 14, 14, 14));
         visorPanel.setToolTipText("");
         visorPanel.setLayout(new javax.swing.BoxLayout(visorPanel, javax.swing.BoxLayout.X_AXIS));
         visorLista.setViewportView(visorPanel);
 
-        jPanel1.add(visorLista, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 600, 260));
+        jPanel1.add(visorLista, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 600, 230));
 
         titleSeccion.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         titleSeccion.setText("Algoritmos Arbol Binario");
-        jPanel1.add(titleSeccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, -1, -1));
+        jPanel1.add(titleSeccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, -1, -1));
 
         labelValor.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         labelValor.setText("Ingrese un número");
-        jPanel1.add(labelValor, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 450, 130, 20));
+        jPanel1.add(labelValor, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 420, 130, 20));
 
         nuevoValor.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         nuevoValor.setToolTipText("");
@@ -158,7 +158,7 @@ public class PanelArbolBinario extends javax.swing.JPanel {
                 nuevoValorKeyTyped(evt);
             }
         });
-        jPanel1.add(nuevoValor, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 480, 240, 30));
+        jPanel1.add(nuevoValor, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 450, 240, 30));
 
         botonEjecutar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         botonEjecutar.setText("Ejecutar Algoritmo");
@@ -168,7 +168,7 @@ public class PanelArbolBinario extends javax.swing.JPanel {
                 botonEjecutarActionPerformed(evt);
             }
         });
-        jPanel1.add(botonEjecutar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 530, 240, 40));
+        jPanel1.add(botonEjecutar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 500, 240, 40));
 
         borrarEstructura.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         borrarEstructura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icons/eraser.png"))); // NOI18N
@@ -198,7 +198,7 @@ public class PanelArbolBinario extends javax.swing.JPanel {
 
         labelAlgoritmos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         labelAlgoritmos.setText("Seleccione el algoritmo deseado");
-        jPanel1.add(labelAlgoritmos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, -1, 20));
+        jPanel1.add(labelAlgoritmos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, -1, 20));
 
         selecionarAlgoritmo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         selecionarAlgoritmo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Insertar Nodo", "Recorrer PreOrder", "Recorrer InOrder", "Recorrer PostOrder", "Obtener Altura", "Obtener Peso", "Buscar", "Eliminar" }));
@@ -207,7 +207,7 @@ public class PanelArbolBinario extends javax.swing.JPanel {
                 selecionarAlgoritmoItemStateChanged(evt);
             }
         });
-        jPanel1.add(selecionarAlgoritmo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 400, 240, 30));
+        jPanel1.add(selecionarAlgoritmo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 240, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
