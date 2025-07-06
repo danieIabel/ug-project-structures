@@ -250,27 +250,23 @@ public class PanelArbolBinario extends javax.swing.JPanel {
         Aviso.warn(texto);
     }//GEN-LAST:event_mostrarListaActionPerformed
 
+      private void activarIngresos(boolean activar) {
+        String texto = activar ? "Ingrese un número" : "No disponible";
+        labelValor.setText(texto);
+        nuevoValor.setEnabled(activar);
+        }
+    
     private void selecionarAlgoritmoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_selecionarAlgoritmoItemStateChanged
         // TODO add your handling code here:
         if (evt.getStateChange() == ItemEvent.SELECTED) {
             String seleccion = (String) selecionarAlgoritmo.getSelectedItem();
 
-            labelValor.setText("Ingrese un número");
-            nuevoValor.setEnabled(true);
+            activarIngresos(true);
 
             switch (seleccion) {
-                case "Recorrer PreOrder" -> {
-                    labelValor.setText("No disponible");
-                    nuevoValor.setEnabled(false);
-                }
-                case "Recorrer InOrder" -> {
-                    labelValor.setText("No disponible");
-                    nuevoValor.setEnabled(false);
-                }
-                case "Recorrer PostOrder" -> {
-                    labelValor.setText("No disponible");
-                    nuevoValor.setEnabled(false);
-                }
+                case "Recorrer PreOrder" -> activarIngresos(false);
+                case "Recorrer InOrder" -> activarIngresos(false);
+                case "Recorrer PostOrder" -> activarIngresos(false);
             }
         }
     }//GEN-LAST:event_selecionarAlgoritmoItemStateChanged
