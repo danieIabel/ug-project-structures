@@ -14,7 +14,14 @@ public class ArbolBinario {
         this.raiz = null;
     }
 
-    public void insertar(int valor) {
+    public void insertar(String dato) {
+        if ("".equals(dato)) {
+            Aviso.datoVacio();
+            return;
+        }
+        
+        int valor = Integer.parseInt(dato);
+        
         limpiarVisitas(raiz);
         
         if (raiz == null) {
@@ -130,7 +137,14 @@ public class ArbolBinario {
         return 1 + contarNodosRecursivo(nodo.izquierda) + contarNodosRecursivo(nodo.derecha);
     }
 
-    public void buscar(int valor) {
+    public void buscar(String dato) {
+        if ("".equals(dato)) {
+            Aviso.datoVacio();
+            return;
+        }
+        
+        int valor = Integer.parseInt(dato);
+        
         limpiarVisitas(raiz);
         boolean encontrado = buscarRecursivo(raiz, valor);
         

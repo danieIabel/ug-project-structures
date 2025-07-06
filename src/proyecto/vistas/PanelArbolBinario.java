@@ -224,18 +224,17 @@ public class PanelArbolBinario extends javax.swing.JPanel {
     private void botonEjecutarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEjecutarActionPerformed
         // TODO add your handling code here:
         String dato = nuevoValor.getText().trim();
-        int numero = Integer.parseInt(dato);
         String opcion = (String) selecionarAlgoritmo.getSelectedItem();
         
         switch (opcion) {
-            case "Insertar Nodo" -> arbol.insertar(numero);
+            case "Insertar Nodo" -> arbol.insertar(dato);
             case "Recorrer PreOrder" -> arbol.preOrden();
             case "Recorrer InOrder" -> arbol.inOrden();
             case "Recorrer PostOrder" -> arbol.postOrden();
             case "Obtener Altura" -> arbol.obtenerAltura();
             case "Obtener Peso" -> arbol.obtenerPeso();
-            case "Buscar" -> arbol.buscar(numero);
-            case "Eliminar" -> arbol.buscar(numero);
+            case "Buscar" -> arbol.buscar(dato);
+            case "Eliminar" -> arbol.buscar(dato);
         }
 
         renderNodos();
