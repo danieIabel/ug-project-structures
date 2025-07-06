@@ -95,21 +95,6 @@ public class ArbolBinario {
         return raiz;
     }
 
-    public void obtenerPeso() {
-        String aviso = "El peso del arbol es: " + pesoRecursivo(raiz);
-        Aviso.info(aviso); 
-    }
-
-    private int pesoRecursivo(NodoArbol nodo) {
-        if (nodo == null) {
-            return 0;
-        }
-        if (nodo.izquierda == null && nodo.derecha == null) {
-            return 1;
-        }
-        return pesoRecursivo(nodo.izquierda) + pesoRecursivo(nodo.derecha);
-    }
-
     public void obtenerAltura() {
         String aviso = "La altura del arbol es: " + alturaRecursiva(raiz);
         Aviso.info(aviso); 
@@ -125,16 +110,16 @@ public class ArbolBinario {
         return 1 + Math.max(izquierdaAltura, derechaAltura);
     }
 
-    public void contarNodos() {
-        String aviso = "El total de nodos es: " + contarNodosRecursivo(raiz);
+    public void obtenerPeso() {
+        String aviso = "El total de nodos es: " + pesoRecursivo(raiz);
         Aviso.info(aviso); 
     }
 
-    private int contarNodosRecursivo(NodoArbol nodo) {
+    private int pesoRecursivo(NodoArbol nodo) {
         if (nodo == null) {
             return 0;
         }
-        return 1 + contarNodosRecursivo(nodo.izquierda) + contarNodosRecursivo(nodo.derecha);
+        return 1 + pesoRecursivo(nodo.izquierda) + pesoRecursivo(nodo.derecha);
     }
 
     public void buscar(String dato) {
