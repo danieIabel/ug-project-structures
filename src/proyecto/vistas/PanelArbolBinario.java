@@ -53,6 +53,8 @@ public class PanelArbolBinario extends javax.swing.JPanel {
         
         if (!nodo.visitado) {
             nodoPanel.setInactiveColors();
+        } else if (nodo.noEncontrado) {
+            nodoPanel.setErrorColors();
         }
         
         Panel.lockSize(nodoPanel);

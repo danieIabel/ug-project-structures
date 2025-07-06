@@ -9,9 +9,11 @@ import proyecto.utils.*;
 public class ArbolBinario {
 
     private NodoArbol raiz;
+    private NodoArbol ultimoVisitado;
 
     public ArbolBinario() {
         this.raiz = null;
+        this.ultimoVisitado = null;
     }
 
     public void insertar(String dato) {
@@ -122,6 +124,16 @@ public class ArbolBinario {
         return 1 + pesoRecursivo(nodo.izquierda) + pesoRecursivo(nodo.derecha);
     }
 
+    private void limpiarVisitas(NodoArbol nodo) {
+        if (nodo == null) {
+            return;
+        }
+        nodo.visitado = false;
+        nodo.noEncontrado = false;
+        limpiarVisitas(nodo.izquierda);
+        limpiarVisitas(nodo.derecha);
+    }
+
     public void buscar(String dato) {
         if ("".equals(dato)) {
             Aviso.datoVacio();
@@ -131,22 +143,19 @@ public class ArbolBinario {
         int valor = Integer.parseInt(dato);
 
         limpiarVisitas(raiz);
+        ultimoVisitado = null;
+
         boolean encontrado = buscarRecursivo(raiz, valor);
 
         if (encontrado) {
             Aviso.nodoEncontrado(valor);
         } else {
+            if (ultimoVisitado != null) {
+                ultimoVisitado.visitado = true;
+                ultimoVisitado.noEncontrado = true;
+            }
             Aviso.nodoNoEncontrado(valor);
         }
-    }
-
-    private void limpiarVisitas(NodoArbol nodo) {
-        if (nodo == null) {
-            return;
-        }
-        nodo.visitado = false;
-        limpiarVisitas(nodo.izquierda);
-        limpiarVisitas(nodo.derecha);
     }
 
     private boolean buscarRecursivo(NodoArbol nodo, int valor) {
@@ -155,10 +164,9 @@ public class ArbolBinario {
         }
 
         nodo.visitado = true;
+        ultimoVisitado = nodo;
 
-        if (valor == nodo.informacion) {
-            return true;
-        }
+        if (valor == nodo.informacion) return true;
         if (valor < nodo.informacion) {
             return buscarRecursivo(nodo.izquierda, valor);
         } else {

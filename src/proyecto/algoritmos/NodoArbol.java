@@ -16,6 +16,7 @@ public class NodoArbol {
 
     // Bandera temporal para saber si fue recorrido
     public boolean visitado = false;
+    public boolean noEncontrado = false;
 
     public NodoArbol(int informacion) {
         this.informacion = informacion;

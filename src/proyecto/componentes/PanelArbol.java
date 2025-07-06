@@ -19,6 +19,10 @@ public final class PanelArbol extends javax.swing.JPanel {
     Color bgColorLigaInactivo = new Color(64,64,64);
     Color bgColorPunteroInactivo = new Color(23,23,23);
     
+    Color bgColorInfoError = new Color(239, 68, 68);
+    Color bgColorLigaError = new Color(185, 28, 28);
+    Color bgColorPunteroError = new Color(127, 29, 29);
+    
     /**
      * Creates new form PanelNodo
      * @param data
@@ -65,6 +69,13 @@ public final class PanelArbol extends javax.swing.JPanel {
         this.setColorSiguiente(bgColorLigaInactivo);
         this.setColorAnterior(bgColorLigaInactivo);
         this.setColorPuntero(bgColorPunteroInactivo);
+    }
+    
+    public void setErrorColors() {
+        this.setColorInfo(bgColorInfoError);
+        this.setColorSiguiente(bgColorLigaError);
+        this.setColorAnterior(bgColorLigaError);
+        this.setColorPuntero(bgColorPunteroError);
     }
     /**
      * This method is called from within the constructor to initialize the form.
