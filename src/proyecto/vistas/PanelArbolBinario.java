@@ -234,7 +234,7 @@ public class PanelArbolBinario extends javax.swing.JPanel {
             case "Obtener Altura" -> arbol.obtenerAltura();
             case "Obtener Peso" -> arbol.obtenerPeso();
             case "Buscar" -> arbol.buscar(dato);
-            case "Eliminar" -> arbol.buscar(dato);
+            case "Eliminar" -> arbol.eliminar(dato);
         }
 
         renderNodos();

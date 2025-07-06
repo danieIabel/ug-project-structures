@@ -19,11 +19,11 @@ public class ArbolBinario {
             Aviso.datoVacio();
             return;
         }
-        
+
         int valor = Integer.parseInt(dato);
-        
+
         limpiarVisitas(raiz);
-        
+
         if (raiz == null) {
             raiz = new NodoArbol(valor);
         } else {
@@ -97,7 +97,7 @@ public class ArbolBinario {
 
     public void obtenerAltura() {
         String aviso = "La altura del arbol es: " + alturaRecursiva(raiz);
-        Aviso.info(aviso); 
+        Aviso.info(aviso);
     }
 
     private int alturaRecursiva(NodoArbol nodo) {
@@ -112,7 +112,7 @@ public class ArbolBinario {
 
     public void obtenerPeso() {
         String aviso = "El total de nodos es: " + pesoRecursivo(raiz);
-        Aviso.info(aviso); 
+        Aviso.info(aviso);
     }
 
     private int pesoRecursivo(NodoArbol nodo) {
@@ -127,21 +127,23 @@ public class ArbolBinario {
             Aviso.datoVacio();
             return;
         }
-        
+
         int valor = Integer.parseInt(dato);
-        
+
         limpiarVisitas(raiz);
         boolean encontrado = buscarRecursivo(raiz, valor);
-        
+
         if (encontrado) {
             Aviso.nodoEncontrado(valor);
         } else {
             Aviso.nodoNoEncontrado(valor);
         }
     }
-    
+
     private void limpiarVisitas(NodoArbol nodo) {
-        if (nodo == null) return;
+        if (nodo == null) {
+            return;
+        }
         nodo.visitado = false;
         limpiarVisitas(nodo.izquierda);
         limpiarVisitas(nodo.derecha);
@@ -163,7 +165,59 @@ public class ArbolBinario {
             return buscarRecursivo(nodo.derecha, valor);
         }
     }
-    
+
+    public void eliminar(String dato) {
+        if ("".equals(dato)) {
+            Aviso.datoVacio();
+            return;
+        }
+
+        int valor = Integer.parseInt(dato);
+        raiz = eliminarIterativo(raiz, valor);
+    }
+
+    private NodoArbol eliminarIterativo(NodoArbol nodo, int valor) {
+        if (nodo == null) {
+            Aviso.nodoNoEncontrado(valor);
+            return null;
+        }
+
+        if (valor < nodo.informacion) {
+            nodo.izquierda = eliminarIterativo(nodo.izquierda, valor);
+        } else if (valor > nodo.informacion) {
+            nodo.derecha = eliminarIterativo(nodo.derecha, valor);
+        } else {
+            // Nodo encontrado
+            if (nodo.derecha == null) {
+                return nodo.izquierda;
+            } else if (nodo.izquierda == null) {
+                return nodo.derecha;
+            } else {
+                NodoArbol aux = nodo.izquierda;
+                NodoArbol aux1 = null;
+                boolean bo = false;
+
+                while (aux.derecha != null) {
+                    aux1 = aux;
+                    aux = aux.derecha;
+                    bo = true;
+                }
+
+                nodo.informacion = aux.informacion;
+
+                if (bo && aux1 != null) {
+                    aux1.derecha = aux.izquierda;
+                } else {
+                    nodo.izquierda = aux.izquierda;
+                }
+            }
+
+            Aviso.info("Nodo eliminado: " + valor);
+        }
+
+        return nodo;
+    }
+
     public void borrarArbol() {
         if (raiz == null) {
             Aviso.error("No hay árbol para borrar.");
@@ -173,10 +227,10 @@ public class ArbolBinario {
             Aviso.info("El árbol ha sido borrado exitosamente.");
         }
     }
-    
-   @Override
+
+    @Override
     public String toString() {
-        String resultado = "raiz -> " +  preOrdenRecursivo(raiz).trim();
+        String resultado = "raiz -> " + preOrdenRecursivo(raiz).trim();
         return resultado;
     }
 }
