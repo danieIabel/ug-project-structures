@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package proyecto.algoritmos;
-
 import proyecto.utils.*;
 
 public class ArbolBinario {
@@ -23,7 +22,6 @@ public class ArbolBinario {
         }
 
         int valor = Integer.parseInt(dato);
-
         limpiarVisitas(raiz);
 
         if (raiz == null) {
@@ -184,46 +182,46 @@ public class ArbolBinario {
         raiz = eliminarIterativo(raiz, valor);
     }
 
-    private NodoArbol eliminarIterativo(NodoArbol nodo, int valor) {
-        if (nodo == null) {
+    private NodoArbol eliminarIterativo(NodoArbol raiz, int valor) {
+        if (raiz == null) {
             Aviso.nodoNoEncontrado(valor);
             return null;
         }
 
-        if (valor < nodo.informacion) {
-            nodo.izquierda = eliminarIterativo(nodo.izquierda, valor);
-        } else if (valor > nodo.informacion) {
-            nodo.derecha = eliminarIterativo(nodo.derecha, valor);
+        if (valor < raiz.informacion) {
+            raiz.izquierda = eliminarIterativo(raiz.izquierda, valor);
+        } else if (valor > raiz.informacion) {
+            raiz.derecha = eliminarIterativo(raiz.derecha, valor);
         } else {
-            // Nodo encontrado
-            if (nodo.derecha == null) {
-                return nodo.izquierda;
-            } else if (nodo.izquierda == null) {
-                return nodo.derecha;
+            // Nodo con el valor encontrado
+            if (raiz.derecha == null) {
+                return raiz.izquierda;
+            } else if (raiz.izquierda == null) {
+                return raiz.derecha;
             } else {
-                NodoArbol aux = nodo.izquierda;
-                NodoArbol aux1 = null;
-                boolean bo = false;
+                // Buscar el mayor de los menores (predecesor)
+                NodoArbol predecesor = raiz.izquierda;
+                NodoArbol padrePredecesor = null;
+                boolean tienePadre = false;
 
-                while (aux.derecha != null) {
-                    aux1 = aux;
-                    aux = aux.derecha;
-                    bo = true;
+                while (predecesor.derecha != null) {
+                    padrePredecesor = predecesor;
+                    predecesor = predecesor.derecha;
+                    tienePadre = true;
                 }
 
-                nodo.informacion = aux.informacion;
+                raiz.informacion = predecesor.informacion;
 
-                if (bo && aux1 != null) {
-                    aux1.derecha = aux.izquierda;
+                if (tienePadre && padrePredecesor != null) {
+                    padrePredecesor.derecha = predecesor.izquierda;
                 } else {
-                    nodo.izquierda = aux.izquierda;
+                    raiz.izquierda = predecesor.izquierda;
                 }
             }
 
             Aviso.info("Nodo eliminado: " + valor);
         }
-
-        return nodo;
+        return raiz;
     }
 
     public void borrarArbol() {
