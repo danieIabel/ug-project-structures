@@ -123,6 +123,7 @@ public class PanelArbolBinario extends javax.swing.JPanel {
         mostrarLista = new javax.swing.JButton();
         labelAlgoritmos = new javax.swing.JLabel();
         selecionarAlgoritmo = new javax.swing.JComboBox<>();
+        activarModoAVL = new javax.swing.JToggleButton();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -172,7 +173,7 @@ public class PanelArbolBinario extends javax.swing.JPanel {
         jPanel1.add(botonEjecutar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 500, 240, 40));
 
         borrarEstructura.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        borrarEstructura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/icons/eraser.png"))); // NOI18N
+        borrarEstructura.setIcon(new javax.swing.ImageIcon("C:\\Users\\ABEL\\Documents\\NetBeansProjects\\ProyectoListas\\src\\assets\\icons\\eraser.png")); // NOI18N
         borrarEstructura.setToolTipText("Ejecutar toString()");
         borrarEstructura.setBorder(null);
         borrarEstructura.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -209,6 +210,11 @@ public class PanelArbolBinario extends javax.swing.JPanel {
             }
         });
         jPanel1.add(selecionarAlgoritmo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 240, 30));
+
+        activarModoAVL.setText("AVL");
+        activarModoAVL.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        activarModoAVL.setMargin(new java.awt.Insets(2, 4, 3, 4));
+        jPanel1.add(activarModoAVL, new org.netbeans.lib.awtextra.AbsoluteConstraints(451, 10, 60, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -284,6 +290,7 @@ public class PanelArbolBinario extends javax.swing.JPanel {
     }//GEN-LAST:event_borrarEstructuraActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton activarModoAVL;
     private javax.swing.JButton borrarEstructura;
     private javax.swing.JButton botonEjecutar;
     private javax.swing.JPanel jPanel1;
