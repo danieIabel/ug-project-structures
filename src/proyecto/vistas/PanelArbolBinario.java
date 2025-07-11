@@ -211,10 +211,11 @@ public class PanelArbolBinario extends javax.swing.JPanel {
         });
         jPanel1.add(selecionarAlgoritmo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 240, 30));
 
-        activarModoAVL.setText("AVL");
+        activarModoAVL.setText("Modo AVL");
+        activarModoAVL.setToolTipText("");
         activarModoAVL.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         activarModoAVL.setMargin(new java.awt.Insets(2, 4, 3, 4));
-        jPanel1.add(activarModoAVL, new org.netbeans.lib.awtextra.AbsoluteConstraints(451, 10, 60, 20));
+        jPanel1.add(activarModoAVL, new org.netbeans.lib.awtextra.AbsoluteConstraints(431, 10, 80, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
