@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package proyecto.algoritmos;
+
 import proyecto.utils.*;
 
 public class ArbolBinario {
@@ -15,7 +16,7 @@ public class ArbolBinario {
         this.ultimoVisitado = null;
     }
 
-    public void insertar(String dato) {
+    public void insertar(String dato, boolean balancear) {
         if ("".equals(dato)) {
             Aviso.datoVacio();
             return;
@@ -27,28 +28,77 @@ public class ArbolBinario {
         if (raiz == null) {
             raiz = new NodoArbol(valor);
         } else {
-            insertarRecursivo(raiz, valor);
+            raiz = insertarRecursivo(raiz, valor, balancear);
         }
     }
 
-    private void insertarRecursivo(NodoArbol actual, int valor) {
-        if (valor < actual.informacion) {
-            if (actual.izquierda == null) {
-                actual.izquierda = new NodoArbol(valor);
-                actual.izquierda.padre = actual;
+    private NodoArbol insertarRecursivo(NodoArbol nodo, int valor, boolean balancear) {
+        if (nodo == null)
+            return new NodoArbol(valor);
+
+        if (valor < nodo.informacion) {
+            nodo.izquierda = insertarRecursivo(nodo.izquierda, valor, balancear);
+            if (nodo.izquierda != null)
+                nodo.izquierda.padre = nodo;
+        } else if (valor > nodo.informacion) {
+            nodo.derecha = insertarRecursivo(nodo.derecha, valor, balancear);
+            if (nodo.derecha != null)
+                nodo.derecha.padre = nodo;
+        }
+
+        return balancear ? balancear(nodo) : nodo;
+    }
+   
+    private NodoArbol balancear(NodoArbol nodo) {
+        int balance =  obtenerAltura(nodo.izquierda) - obtenerAltura(nodo.derecha) ;
+
+        if (balance > 1) {
+            if (obtenerAltura(nodo.izquierda.izquierda) >= obtenerAltura(nodo.izquierda.derecha)) {
+                return rotacionDerecha(nodo);
             } else {
-                insertarRecursivo(actual.izquierda, valor);
+                nodo.izquierda = rotacionIzquierda(nodo.izquierda);
+                return rotacionDerecha(nodo);
             }
-        } else if (valor > actual.informacion) {
-            if (actual.derecha == null) {
-                actual.derecha = new NodoArbol(valor);
-                actual.derecha.padre = actual;
+        } else if (balance < -1) {
+            if (obtenerAltura(nodo.derecha.derecha) >= obtenerAltura(nodo.derecha.izquierda)) {
+                return rotacionIzquierda(nodo);
             } else {
-                insertarRecursivo(actual.derecha, valor);
+                nodo.derecha = rotacionDerecha(nodo.derecha);
+                return rotacionIzquierda(nodo);
             }
         }
+
+        return nodo;
     }
 
+    private NodoArbol rotacionIzquierda(NodoArbol nodo) {
+        NodoArbol nuevaRaiz = nodo.derecha;
+        nodo.derecha = nuevaRaiz.izquierda;
+        nuevaRaiz.izquierda = nodo;
+
+        if (nodo.derecha != null)
+            nodo.derecha.padre = nodo;
+
+        nuevaRaiz.padre = nodo.padre;
+        nodo.padre = nuevaRaiz;
+
+        return nuevaRaiz;
+    }
+
+    private NodoArbol rotacionDerecha(NodoArbol nodo) {
+        NodoArbol nuevaRaiz = nodo.izquierda;
+        nodo.izquierda = nuevaRaiz.derecha;
+        nuevaRaiz.derecha = nodo;
+
+        if (nodo.izquierda != null)
+            nodo.izquierda.padre = nodo;
+
+        nuevaRaiz.padre = nodo.padre;
+        nodo.padre = nuevaRaiz;
+
+        return nuevaRaiz;
+    }
+    
     public void inOrden() {
         String aviso = inOrdenRecursivo(raiz).trim();
         Aviso.info("Recorrido InOrder: " + aviso);
@@ -94,8 +144,13 @@ public class ArbolBinario {
     public NodoArbol getRaiz() {
         return raiz;
     }
-
-    public void obtenerAltura() {
+   
+    private int obtenerAltura(NodoArbol nodo) {
+        if (nodo == null) return 0;
+        return 1 + Math.max(obtenerAltura(nodo.izquierda), obtenerAltura(nodo.derecha));
+    }
+    
+    public void obtenerAlturaArbol() {
         String aviso = "La altura del arbol es: " + alturaRecursiva(raiz);
         Aviso.info(aviso);
     }
@@ -172,56 +227,41 @@ public class ArbolBinario {
         }
     }
 
-    public void eliminar(String dato) {
+    public void eliminar(String dato, boolean balancear) {
         if ("".equals(dato)) {
             Aviso.datoVacio();
             return;
         }
 
         int valor = Integer.parseInt(dato);
-        raiz = eliminarIterativo(raiz, valor);
+        raiz = eliminarRecursivo(raiz, valor, balancear);
     }
 
-    private NodoArbol eliminarIterativo(NodoArbol raiz, int valor) {
-        if (raiz == null) {
+    private NodoArbol eliminarRecursivo(NodoArbol nodo, int valor, boolean balancear) {
+        if (nodo == null) {
             Aviso.nodoNoEncontrado(valor);
             return null;
         }
 
-        if (valor < raiz.informacion) {
-            raiz.izquierda = eliminarIterativo(raiz.izquierda, valor);
-        } else if (valor > raiz.informacion) {
-            raiz.derecha = eliminarIterativo(raiz.derecha, valor);
+        if (valor < nodo.informacion) {
+            nodo.izquierda = eliminarRecursivo(nodo.izquierda, valor, balancear);
+        } else if (valor > nodo.informacion) {
+            nodo.derecha = eliminarRecursivo(nodo.derecha, valor, balancear);
         } else {
-            // Nodo con el valor encontrado
-            if (raiz.derecha == null) {
-                return raiz.izquierda;
-            } else if (raiz.izquierda == null) {
-                return raiz.derecha;
-            } else {
-                // Buscar el mayor de los menores (predecesor)
-                NodoArbol predecesor = raiz.izquierda;
-                NodoArbol padrePredecesor = null;
-                boolean tienePadre = false;
+            if (nodo.izquierda == null) return nodo.derecha;
+            if (nodo.derecha == null) return nodo.izquierda;
 
-                while (predecesor.derecha != null) {
-                    padrePredecesor = predecesor;
-                    predecesor = predecesor.derecha;
-                    tienePadre = true;
-                }
-
-                raiz.informacion = predecesor.informacion;
-
-                if (tienePadre && padrePredecesor != null) {
-                    padrePredecesor.derecha = predecesor.izquierda;
-                } else {
-                    raiz.izquierda = predecesor.izquierda;
-                }
+            NodoArbol predecesor = nodo.izquierda;
+            while (predecesor.derecha != null) {
+                predecesor = predecesor.derecha;
             }
 
+            nodo.informacion = predecesor.informacion;
+            nodo.izquierda = eliminarRecursivo(nodo.izquierda, predecesor.informacion, balancear);
             Aviso.info("Nodo eliminado: " + valor);
         }
-        return raiz;
+
+        return balancear ? balancear(nodo) : nodo;
     }
 
     public void borrarArbol() {

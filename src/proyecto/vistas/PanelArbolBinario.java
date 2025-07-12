@@ -27,6 +27,7 @@ import proyecto.utils.*;
 public class PanelArbolBinario extends javax.swing.JPanel {
     private final ArbolBinario arbol = new ArbolBinario();
     Color bgColor = new Color(240,253,250);
+    boolean modoAVL = false;
 
     /**
      * Creates new form Inicio
@@ -214,6 +215,11 @@ public class PanelArbolBinario extends javax.swing.JPanel {
         activarModoAVL.setText("Modo AVL");
         activarModoAVL.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         activarModoAVL.setMargin(new java.awt.Insets(2, 4, 3, 4));
+        activarModoAVL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                activarModoAVLActionPerformed(evt);
+            }
+        });
         jPanel1.add(activarModoAVL, new org.netbeans.lib.awtextra.AbsoluteConstraints(431, 10, 80, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -234,14 +240,14 @@ public class PanelArbolBinario extends javax.swing.JPanel {
         String opcion = (String) selecionarAlgoritmo.getSelectedItem();
         
         switch (opcion) {
-            case "Insertar Nodo" -> arbol.insertar(dato);
+            case "Insertar Nodo" -> arbol.insertar(dato, modoAVL);
+            case "Eliminar" -> arbol.eliminar(dato, modoAVL);
             case "Recorrer PreOrder" -> arbol.preOrden();
             case "Recorrer InOrder" -> arbol.inOrden();
             case "Recorrer PostOrder" -> arbol.postOrden();
-            case "Obtener Altura" -> arbol.obtenerAltura();
+            case "Obtener Altura" -> arbol.obtenerAlturaArbol();
             case "Obtener Peso" -> arbol.obtenerPeso();
             case "Buscar" -> arbol.buscar(dato);
-            case "Eliminar" -> arbol.eliminar(dato);
         }
 
         renderNodos();
@@ -288,6 +294,16 @@ public class PanelArbolBinario extends javax.swing.JPanel {
         arbol.borrarArbol();
         renderNodos();
     }//GEN-LAST:event_borrarEstructuraActionPerformed
+
+    private void activarModoAVLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_activarModoAVLActionPerformed
+        modoAVL = activarModoAVL.isSelected();
+        
+        if (modoAVL) {
+            titleSeccion.setText("Algoritmos Arbol Binario AVL");
+        } else {
+            titleSeccion.setText("Algoritmos Arbol Binario");
+        }
+    }//GEN-LAST:event_activarModoAVLActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton activarModoAVL;
