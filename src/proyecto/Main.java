@@ -11,33 +11,20 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 public class Main extends javax.swing.JFrame {
-
-    private CardLayout cardLayout;
-    private JPanel panel;
-    private Login loginPanel;
-    private Bienvenido bienvenidaPanel;
+    private final CardLayout cardLayout = new CardLayout();
+    private final JPanel panel = new JPanel(cardLayout);
+    private final Login loginPanel = new Login();
+    private final Bienvenido bienvenidaPanel = new Bienvenido();
 
     public Main() {
         initComponents();
-        iniciarPaneles();
-    }
-
-    private void iniciarPaneles() {
-        cardLayout = new CardLayout();
-        panel = new JPanel(cardLayout);
-
-        loginPanel = new Login();
-        bienvenidaPanel = new Bienvenido();
-
         panel.add(loginPanel, "LOGIN");
         panel.add(bienvenidaPanel, "BIENVENIDO");
 
         setContentPane(panel);
         cardLayout.show(panel, "LOGIN");
 
-        loginPanel.comprobar(() -> {
-            cardLayout.show(panel, "BIENVENIDO");
-        });
+        loginPanel.comprobar(() -> cardLayout.show(panel, "BIENVENIDO"));
     }
 
     /**
