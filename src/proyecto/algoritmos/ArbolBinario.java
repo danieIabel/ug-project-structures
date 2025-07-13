@@ -151,7 +151,7 @@ public class ArbolBinario {
     }
     
     public void obtenerAlturaArbol() {
-        String aviso = "La altura del arbol es: " + alturaRecursiva(raiz);
+        String aviso = "La altura del árbol es: " + alturaRecursiva(raiz);
         Aviso.info(aviso);
     }
 
@@ -166,7 +166,7 @@ public class ArbolBinario {
     }
 
     public void obtenerPeso() {
-        String aviso = "El total de nodos es: " + pesoRecursivo(raiz);
+        String aviso = "El peso del árbol es: " + pesoRecursivo(raiz);
         Aviso.info(aviso);
     }
 
@@ -267,11 +267,34 @@ public class ArbolBinario {
     public void borrarArbol() {
         if (raiz == null) {
             Aviso.error("No hay árbol para borrar.");
-        } else {
-            raiz.setContador(0);
-            raiz = null;
-            Aviso.info("El árbol ha sido borrado exitosamente.");
+            return;
         }
+
+        raiz.setContador(0);
+        raiz = null;
+        Aviso.info("El árbol ha sido borrado exitosamente.");
+    }
+    
+    public void balancearTodo() {
+        boolean cambiado;
+
+        do {
+            NodoArbol antes = raiz;
+            raiz = balancearRecursivo(raiz);
+            cambiado = (antes != raiz);
+        } while (cambiado);
+    }
+
+    private NodoArbol balancearRecursivo(NodoArbol nodo) {
+        if (nodo == null) return null;
+
+        nodo.izquierda = balancearRecursivo(nodo.izquierda);
+        if (nodo.izquierda != null) nodo.izquierda.padre = nodo;
+
+        nodo.derecha = balancearRecursivo(nodo.derecha);
+        if (nodo.derecha != null) nodo.derecha.padre = nodo;
+
+        return balancear(nodo);
     }
 
     @Override

@@ -12,8 +12,12 @@ import java.awt.Color;
  */
 public final class PanelArbol extends javax.swing.JPanel {
     Color bgColorInfo = new Color(20,184,166);
-    Color bgColorLiga = new Color(242,242,242);
+    Color bgColorLiga = new Color(15,118,110);
     Color bgColorPuntero = new Color(19,78,74);
+    
+    Color bgAVLColorInfo = new Color(168, 85, 247);
+    Color bgAVLColorLiga = new Color(126, 34, 206);
+    Color bgAVLColorPuntero = new Color(88, 28, 135);
     
     Color bgColorInfoInactivo = new Color(115,115,115);
     Color bgColorLigaInactivo = new Color(64,64,64);
@@ -35,6 +39,7 @@ public final class PanelArbol extends javax.swing.JPanel {
     
     public PanelArbol(int data, String anterior, String siguiente, String id) {
         initComponents();
+        this.setInactiveColors();
 
         valorInfo.setText(Integer.toString(data));
         ligaAnterior.setText(anterior);
@@ -57,11 +62,11 @@ public final class PanelArbol extends javax.swing.JPanel {
         bgPuntero.setBackground(color);
     }
     
-    public void setActiveColors() {
-        this.setColorInfo(bgColorInfo);
-        this.setColorSiguiente(bgColorLiga);
-        this.setColorAnterior(bgColorLiga);
-        this.setColorPuntero(bgColorPuntero);
+    public void setActiveColors(boolean esAVL) {
+        this.setColorInfo(esAVL ? bgAVLColorInfo : bgColorInfo);
+        this.setColorSiguiente(esAVL ? bgAVLColorLiga : bgColorLiga);
+        this.setColorAnterior(esAVL ? bgAVLColorLiga : bgColorLiga);
+        this.setColorPuntero(esAVL ? bgAVLColorPuntero : bgColorPuntero);
     }
     
     public void setInactiveColors() {

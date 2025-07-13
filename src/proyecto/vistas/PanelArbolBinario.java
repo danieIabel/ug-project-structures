@@ -27,6 +27,7 @@ import proyecto.utils.*;
 public class PanelArbolBinario extends javax.swing.JPanel {
     private final ArbolBinario arbol = new ArbolBinario();
     Color bgColor = new Color(240,253,250);
+    Color avlBgColor = new Color (250, 245, 255);
     boolean modoAVL = false;
 
     /**
@@ -37,6 +38,8 @@ public class PanelArbolBinario extends javax.swing.JPanel {
     }
 
     private JComponent crearVistaArbol(NodoArbol nodo) {
+        Color actualBg = modoAVL ? avlBgColor : bgColor;
+        
         if (nodo == null) {
             return Box.createHorizontalBox();
         }
@@ -51,15 +54,20 @@ public class PanelArbolBinario extends javax.swing.JPanel {
             
         PanelArbol nodoPanel = new PanelArbol(nodo.informacion, ligaIzq, ligaDer, idActual);
         
-        if (!nodo.visitado) {
-            nodoPanel.setInactiveColors();
-        } else if (nodo.noEncontrado) {
+        if (nodo.visitado) {
+            nodoPanel.setActiveColors(modoAVL);
+        }
+        
+        if (nodo.noEncontrado) {
             nodoPanel.setErrorColors();
         }
         
         Panel.lockSize(nodoPanel);
         JPanel hijosPanel = new JPanel();
-        hijosPanel.setBackground(bgColor);
+        JPanel contenedor = new JPanel();
+        
+        hijosPanel.setBackground(actualBg);
+        contenedor.setBackground(actualBg);
         
         hijosPanel.setLayout(new BoxLayout(hijosPanel, BoxLayout.X_AXIS));
         hijosPanel.add(crearVistaArbol(nodo.izquierda));
@@ -68,9 +76,6 @@ public class PanelArbolBinario extends javax.swing.JPanel {
         hijosPanel.add(Box.createHorizontalStrut(8));
         hijosPanel.add(crearVistaArbol(nodo.derecha));
 
-        JPanel contenedor = new JPanel();
-        contenedor.setBackground(bgColor);
-        
         contenedor.setLayout(new BoxLayout(contenedor, BoxLayout.Y_AXIS));
         nodoPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
         hijosPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -98,6 +103,7 @@ public class PanelArbolBinario extends javax.swing.JPanel {
 
         JComponent arbolVista = crearVistaArbol(arbol.getRaiz());
         visorPanel.add(arbolVista, BorderLayout.CENTER);
+        visorPanel.setBackground(modoAVL ? avlBgColor : bgColor);
 
         visorPanel.revalidate();
         visorPanel.repaint();
@@ -212,7 +218,7 @@ public class PanelArbolBinario extends javax.swing.JPanel {
         });
         jPanel1.add(selecionarAlgoritmo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 240, 30));
 
-        activarModoAVL.setText("Modo AVL");
+        activarModoAVL.setText("Modo AVL OFF");
         activarModoAVL.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         activarModoAVL.setMargin(new java.awt.Insets(2, 4, 3, 4));
         activarModoAVL.addActionListener(new java.awt.event.ActionListener() {
@@ -220,7 +226,7 @@ public class PanelArbolBinario extends javax.swing.JPanel {
                 activarModoAVLActionPerformed(evt);
             }
         });
-        jPanel1.add(activarModoAVL, new org.netbeans.lib.awtextra.AbsoluteConstraints(431, 10, 80, 20));
+        jPanel1.add(activarModoAVL, new org.netbeans.lib.awtextra.AbsoluteConstraints(421, 10, 90, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -300,9 +306,14 @@ public class PanelArbolBinario extends javax.swing.JPanel {
         
         if (modoAVL) {
             titleSeccion.setText("Algoritmos Arbol Binario AVL");
+            activarModoAVL.setText("Modo AVL ON");
+            arbol.balancearTodo();
         } else {
             titleSeccion.setText("Algoritmos Arbol Binario");
+            activarModoAVL.setText("Modo AVL OFF");
         }
+        
+        renderNodos();
     }//GEN-LAST:event_activarModoAVLActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
