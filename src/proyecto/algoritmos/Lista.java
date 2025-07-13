@@ -38,10 +38,8 @@ public class Lista {
         }
 
         Nodo actual = cabeza;
-
-        while (actual.enlace != null) {
+        while (actual.enlace != null)
             actual = actual.enlace;
-        }
 
         actual.enlace = nuevo;
     }
@@ -131,10 +129,8 @@ public class Lista {
         }
 
         Nodo actual = cabeza;
-
-        while (actual.enlace.enlace != null) {
+        while (actual.enlace.enlace != null)
             actual = actual.enlace;
-        }
 
         actual.enlace = null;
     }
@@ -156,16 +152,13 @@ public class Lista {
         }
 
         Nodo actual = cabeza;
-
-        while (actual.enlace != null && !actual.enlace.informacion.equals(dato)) {
+        while (actual.enlace != null && !actual.enlace.informacion.equals(dato))
             actual = actual.enlace;
-        }
 
-        if (actual.enlace != null) {
+        if (actual.enlace != null)
             actual.enlace = actual.enlace.enlace;
-        } else {
+        else
             Aviso.noEncontrado();
-        }
     }
 
     public void eliminarAntesDe(String dato) {

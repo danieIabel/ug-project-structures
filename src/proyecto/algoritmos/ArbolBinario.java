@@ -53,24 +53,25 @@ public class ArbolBinario {
         int balance =  obtenerAltura(nodo.izquierda) - obtenerAltura(nodo.derecha) ;
 
         if (balance > 1) {
-            if (obtenerAltura(nodo.izquierda.izquierda) >= obtenerAltura(nodo.izquierda.derecha)) {
+            if (obtenerAltura(nodo.izquierda.izquierda) >= obtenerAltura(nodo.izquierda.derecha))
                 return rotacionDerecha(nodo);
-            } else {
-                nodo.izquierda = rotacionIzquierda(nodo.izquierda);
-                return rotacionDerecha(nodo);
-            }
+            nodo.izquierda = rotacionIzquierda(nodo.izquierda);
+            return rotacionDerecha(nodo);
         } else if (balance < -1) {
-            if (obtenerAltura(nodo.derecha.derecha) >= obtenerAltura(nodo.derecha.izquierda)) {
+            if (obtenerAltura(nodo.derecha.derecha) >= obtenerAltura(nodo.derecha.izquierda))
                 return rotacionIzquierda(nodo);
-            } else {
-                nodo.derecha = rotacionDerecha(nodo.derecha);
-                return rotacionIzquierda(nodo);
-            }
+            nodo.derecha = rotacionDerecha(nodo.derecha);
+            return rotacionIzquierda(nodo);
         }
 
         return nodo;
     }
-
+ 
+    private int obtenerAltura(NodoArbol nodo) {
+        if (nodo == null) return 0;
+        return 1 + Math.max(obtenerAltura(nodo.izquierda), obtenerAltura(nodo.derecha));
+    }
+    
     private NodoArbol rotacionIzquierda(NodoArbol nodo) {
         NodoArbol nuevaRaiz = nodo.derecha;
         nodo.derecha = nuevaRaiz.izquierda;
@@ -143,11 +144,6 @@ public class ArbolBinario {
 
     public NodoArbol getRaiz() {
         return raiz;
-    }
-   
-    private int obtenerAltura(NodoArbol nodo) {
-        if (nodo == null) return 0;
-        return 1 + Math.max(obtenerAltura(nodo.izquierda), obtenerAltura(nodo.derecha));
     }
     
     public void obtenerAlturaArbol() {

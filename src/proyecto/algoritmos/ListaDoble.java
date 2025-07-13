@@ -171,11 +171,9 @@ public class ListaDoble {
         }
         
         NodoDoble actual = cabeza;
-
-        while (actual != null && !actual.informacion.equals(dato)) {
+        while (actual != null && !actual.informacion.equals(dato))
             actual = actual.siguiente;
-        }
-
+        
         if (actual == null) {
             Aviso.noEncontrado();
             return;
