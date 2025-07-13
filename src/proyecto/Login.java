@@ -225,7 +225,7 @@ public class Login extends javax.swing.JPanel {
 
     private void passwordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordFocusGained
         // TODO add your handling code here:
-        if (password.getText().equals(PLACEHOLDER_PASS))
+        if (password.getPassword().equals(PLACEHOLDER_PASS))
             password.setEchoChar('\u25cf');
             
         handlePlaceHolder(password, PLACEHOLDER_PASS);
@@ -238,7 +238,7 @@ public class Login extends javax.swing.JPanel {
 
     private void passwordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordFocusLost
         // TODO add your handling code here:
-        if (password.getText().equals(""))
+        if (password.getPassword().equals(""))
             password.setEchoChar('\u0000');
         handlePlaceHolder(password, PLACEHOLDER_PASS);
     }//GEN-LAST:event_passwordFocusLost
