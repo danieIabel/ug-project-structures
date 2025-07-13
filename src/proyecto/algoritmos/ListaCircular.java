@@ -26,17 +26,14 @@ public class ListaCircular {
             cabeza = nuevo;
         } else {
             NodoCircular actual = cabeza;
-
-            while (actual.enlace != cabeza) {
+            while (actual.enlace != cabeza)
                 actual = actual.enlace;
-            }
-
             nuevo.enlace = cabeza;
             cabeza = nuevo;
             actual.enlace = cabeza;
         }
     }
-
+    
     public void insertarFinal(String dato) {
         if ("".equals(dato)) {
             Aviso.datoVacio();
@@ -49,11 +46,8 @@ public class ListaCircular {
             cabeza = nuevo;
         } else {
             NodoCircular actual = cabeza;
-
-            while (actual.enlace != cabeza) {
+            while (actual.enlace != cabeza)
                 actual = actual.enlace;
-            }
-
             actual.enlace = nuevo;
             nuevo.enlace = cabeza;
         }
@@ -147,10 +141,8 @@ public class ListaCircular {
         }
 
         NodoCircular actual = cabeza;
-
-        while (actual.enlace != cabeza) {
+        while (actual.enlace != cabeza)
             actual = actual.enlace;
-        }
 
         cabeza = cabeza.enlace;
         actual.enlace = cabeza;
@@ -196,14 +188,13 @@ public class ListaCircular {
         }
 
         NodoCircular actual = cabeza;
-
-        while (actual.enlace != cabeza && !actual.enlace.informacion.equals(dato)) {
+        while (actual.enlace != cabeza && !actual.enlace.informacion.equals(dato))
             actual = actual.enlace;
-        }
 
-        if (actual.enlace.informacion.equals(dato)) {
+        if (actual.enlace.informacion.equals(dato))
             actual.enlace = actual.enlace.enlace;
-        }
+        else
+            Aviso.noEncontrado();
     }
 
     public void eliminarAntesDe(String dato) {
