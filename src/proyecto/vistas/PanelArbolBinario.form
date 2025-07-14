@@ -155,7 +155,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="2" name="C:\Users\ABEL\Documents\NetBeansProjects\ProyectoListas\src\assets\icons\eraser.png"/>
             </Property>
-            <Property name="toolTipText" type="java.lang.String" value="Ejecutar toString()"/>
+            <Property name="toolTipText" type="java.lang.String" value="Borrar Arbol"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
             </Property>

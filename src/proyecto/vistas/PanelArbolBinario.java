@@ -181,7 +181,7 @@ public class PanelArbolBinario extends javax.swing.JPanel {
 
         borrarEstructura.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         borrarEstructura.setIcon(new javax.swing.ImageIcon("C:\\Users\\ABEL\\Documents\\NetBeansProjects\\ProyectoListas\\src\\assets\\icons\\eraser.png")); // NOI18N
-        borrarEstructura.setToolTipText("Ejecutar toString()");
+        borrarEstructura.setToolTipText("Borrar Arbol");
         borrarEstructura.setBorder(null);
         borrarEstructura.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         borrarEstructura.setFocusable(false);
